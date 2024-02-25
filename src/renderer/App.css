@@ -1,62 +1,89 @@
-/*
- * @NOTE: Prepend a `~` to css file paths that are in your node_modules
- *        See https://github.com/webpack-contrib/sass-loader#imports
- */
-body {
-  position: relative;
-  color: white;
-  height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
-  overflow-y: hidden;
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #333;
+    color: white;
+  }
+
+  .titleBar {
+    background: #333333;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: #ddd;
+    color: black;
+  }
+
+  .titleBar {
+    background: #ddd;
+  }
+
+}
+
+.titleBar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  justify-content: space-between;
 
-button {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: all ease-in 0.1s;
-  cursor: pointer;
-  opacity: 0.9;
-}
+  .left-title {
+    display: flex;
+    align-items: center;
+    -webkit-app-region: no-drag;
 
-button:hover {
-  transform: scale(1.05);
-  opacity: 1;
-}
+    .icon-image {
+      width: 24px;
+      height: 24px;
+    }
+    .left-menu {
+      margin-left: 15px;
+      display: flex;
+      align-items: center;
+      .menu-item{
+        padding: 8px;
+      }
+      .menu-item:hover {
+        background: #888;
+        border-radius: 10%
+      }
 
-li {
-  list-style: none;
-}
+      @media (prefers-color-scheme: light) {
+        .sub-menus {
+          position: absolute;
+          background: #ddd;
+          padding: 10px;
+          border-radius: 10px;
+          top: 50px;
+          z-index: 100;
+          border: #222 1px solid;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        .sub-menus {
+          position: absolute;
+          background: #333;
+          padding: 10px;
+          border-radius: 10px;
+          top: 50px;
+          z-index: 100;
+          border: #222 1px solid;
+        }
+      }
+    }
+  }
 
-a {
-  text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
-}
+  .right-title {
+    display: flex;
+    align-items: center;
+    -webkit-app-region: no-drag;
 
-a:hover {
-  opacity: 1;
-  text-decoration: none;
-}
-
-.Hello {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+    .traffic-light {
+      padding: 8px;
+    }
+    .traffic-light:hover {
+      background: #2222;
+      border-radius: 20%;
+    }
+  }
 }
