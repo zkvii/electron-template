@@ -10,5 +10,5 @@ root.render(<App />);
 //   console.log(arg);
 // });
 // window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
-window.darkMode.toggle();
+// window.darkMode.toggle();
 // console.log(window.darkMode);

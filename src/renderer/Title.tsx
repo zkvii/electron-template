@@ -2,6 +2,7 @@ import MinusOutlined from '@ant-design/icons/MinusOutlined';
 import BorderOutlined from '@ant-design/icons/BorderOutlined';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import React, { useEffect, useState, useRef } from 'react';
+import { useClickAway } from "@uidotdev/usehooks";
 import icon from '../../assets/quote.png';
 
 function FileMenus() {
@@ -72,25 +73,16 @@ function HelpMenus() {
 function LeftMenu() {
   const [displayMenu, setDisplayMenu] = useState(false);
   const [shoSubMenus, setShowSubMenus] = useState(-1);
-  const dropdownRef = useRef(null);
   const ShowSubMenus = (num: number) => {
     setShowSubMenus(num);
     setDisplayMenu(!displayMenu);
   };
-  useEffect(() => {
-    const handleClickOutside = () => {
-      setDisplayMenu(false);
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const ref = useClickAway(() => {
+    setDisplayMenu(false);
+  });
 
   return (
-    <div className="left-menu" ref={dropdownRef}>
+    <div className="left-menu" ref={ref}>
       <div className="menu-item" onClick={() => ShowSubMenus(0)}>
         文件
         {displayMenu && shoSubMenus === 0 && <FileMenus />}

@@ -1,11 +1,8 @@
 import './Content.scss';
-import HomeOutlined from '@ant-design/icons/HomeOutlined';
-import FolderOutlined from '@ant-design/icons/FolderOutlined';
-
-import FilePdfOutlined from '@ant-design/icons/FilePdfOutlined';
+import { RightOutlined, FilePdfOutlined, FolderOutlined, HomeOutlined, DownOutlined } from '@ant-design/icons';
 import search from '../../assets/svg/search.svg';
 
-function Files({ FolderName }: { FolderName: string }) {
+function Files() {
   const files = ['file1', 'file2', 'file3'];
   return (
     <div className="main-files">
@@ -14,7 +11,7 @@ function Files({ FolderName }: { FolderName: string }) {
           <div className="item">
             <FilePdfOutlined />
             <span className="item-text">
-              {FolderName}-{file}
+              -{file}
             </span>
           </div>
         </div>
@@ -31,11 +28,10 @@ function Folders({ LibName }: { LibName: string }) {
         <div className="item-container" key={folder}>
           <div className="item">
             <FolderOutlined />
-            <span className="folder-item-text">
+            <span className="item-text">
               {LibName}-{folder}
             </span>
           </div>
-          <Files FolderName={folder} />
         </div>
       ))}
     </div>
@@ -43,12 +39,17 @@ function Folders({ LibName }: { LibName: string }) {
 }
 
 function Libs() {
+  const [ExpandFolders, setExpandFolders] = React.useState(false);
+  const Expand = () => {
+    setExpandFolders(!ExpandFolders);
+  }
   const libs = ['lib1'];
   return (
     <div className="main-libs">
       {libs.map((lib) => (
         <div className="item-container" key={lib}>
           <div className="item">
+            <DownOutlined className=""/>
             <HomeOutlined />
             <span className="item-text">{lib}</span>
           </div>
@@ -76,6 +77,9 @@ export function Content() {
             <Libs />
           </div>
         </div>
+      </div>
+      <div className="middle-panel">
+        <Files />
       </div>
       <div className="right-panel" />
     </div>

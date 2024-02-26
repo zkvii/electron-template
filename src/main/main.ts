@@ -95,6 +95,8 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
+    minHeight: 400,
+    minWidth: 600,
     icon: getAssetPath('quote.png'),
     frame: false,
     webPreferences: {
