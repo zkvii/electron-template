@@ -5,8 +5,6 @@ import { Content } from './Content';
 import { Settings } from './Settings';
 
 
-
-
 function Index() {
   return (
     <div className="App">

@@ -3,7 +3,7 @@ import BorderOutlined from '@ant-design/icons/BorderOutlined';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
 import React, { useEffect, useState, useRef } from 'react';
 import { useClickAway } from "@uidotdev/usehooks";
-import icon from '../../assets/quote.png';
+import icon from '../../../refm/assets/quote.png';
 
 function FileMenus() {
   return (
