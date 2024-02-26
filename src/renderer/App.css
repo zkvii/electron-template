@@ -20,13 +20,21 @@
   }
 
 }
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-user-select: none;
+  /*overflow-y: hidden;*/
+}
 
 .titleBar {
   -webkit-user-select: none;
   -webkit-app-region: drag;
   display: flex;
   justify-content: space-between;
-
+  /*position: fixed;*/
+  /*width: 100%;*/
   .left-title {
     display: flex;
     align-items: center;
@@ -35,6 +43,7 @@
     .icon-image {
       width: 24px;
       height: 24px;
+      padding: 8px;
     }
     .left-menu {
       margin-left: 15px;

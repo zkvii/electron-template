@@ -1,7 +1,7 @@
 import MinusOutlined from '@ant-design/icons/MinusOutlined';
 import BorderOutlined from '@ant-design/icons/BorderOutlined';
 import CloseOutlined from '@ant-design/icons/CloseOutlined';
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import icon from '../../assets/quote.png';
 
 function FileMenus() {
@@ -46,7 +46,9 @@ function ConfigMenus() {
   }
   return (
     <div className="sub-menus">
-      <div className="menu-item" onClick={showSettings}>设置</div>
+      <div className="menu-item" onClick={showSettings}>
+        设置
+      </div>
       <div className="menu-item">插件</div>
       <div className="menu-item">主题</div>
       <div className="menu-item">字体</div>
@@ -68,35 +70,46 @@ function HelpMenus() {
 }
 
 function LeftMenu() {
-  const[displayMenu, setDisplayMenu] = useState(false);
+  const [displayMenu, setDisplayMenu] = useState(false);
   const [shoSubMenus, setShowSubMenus] = useState(-1);
+  const dropdownRef = useRef(null);
   const ShowSubMenus = (num: number) => {
     setShowSubMenus(num);
-    setDisplayMenu(!displayMenu)
+    setDisplayMenu(!displayMenu);
   };
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setDisplayMenu(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="left-menu">
+    <div className="left-menu" ref={dropdownRef}>
       <div className="menu-item" onClick={() => ShowSubMenus(0)}>
         文件
         {displayMenu && shoSubMenus === 0 && <FileMenus />}
       </div>
       <div className="menu-item" onClick={() => ShowSubMenus(1)}>
         编辑
-        {displayMenu &&shoSubMenus === 1 && <EditMenus />}
-
+        {displayMenu && shoSubMenus === 1 && <EditMenus />}
       </div>
       <div className="menu-item" onClick={() => ShowSubMenus(2)}>
         查看
-        {displayMenu &&shoSubMenus === 2 && <ViewMenus />}
+        {displayMenu && shoSubMenus === 2 && <ViewMenus />}
       </div>
       <div className="menu-item" onClick={() => ShowSubMenus(3)}>
         配置
-        {displayMenu &&shoSubMenus === 3 && <ConfigMenus />}
+        {displayMenu && shoSubMenus === 3 && <ConfigMenus />}
       </div>
       <div className="menu-item" onClick={() => ShowSubMenus(4)}>
         帮助
-        {displayMenu &&shoSubMenus === 4 && <HelpMenus />}
+        {displayMenu && shoSubMenus === 4 && <HelpMenus />}
       </div>
     </div>
   );
